@@ -34,9 +34,9 @@
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
                     content.</p>
                 <ul>
-                    <li class="text-weight-bold">Floor: {{current.floor}}</li>
-                    <li class="text-weight-bold">Surface: {{current.surface}}</li>
-                    <li class="text-weight-bold">Rooms: {{current.rooms}}</li>
+                    <li class="text-weight-bold">Floor: {{next.floor}}</li>
+                    <li class="text-weight-bold">Surface: {{next.surface}}</li>
+                    <li class="text-weight-bold">Rooms: {{next.rooms}}</li>
                 </ul>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
@@ -138,10 +138,10 @@
     .card {
         transition:all 1s;
         &--two {
-            transform:scale(0.9,0.9) translateY(40px);
+            transform:scale(0.9,0.9) translateY(50px);
         }
         &--three {
-            transform:scale(0.8,0.8) translateY(130px);
+            transform:scale(0.8,0.8) translateY(100px);
         }
     }
     .on-top{

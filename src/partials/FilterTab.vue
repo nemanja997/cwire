@@ -1,10 +1,9 @@
 <template>
 
-    <div class="filter-tab">
-        <div class="tab-heading"
-             :class="{'tab-active': currentlyExpanded}"
-             @click="toggle"
-        >
+    <div class="filter-tab"
+         :class="{'tab-active': currentlyExpanded}">
+        <div class=" tab-heading"
+             @click="toggle">
             <span>{{title}}</span>
 
             <!--must use v-show instead of class binding because icon will not render-->
@@ -51,11 +50,16 @@
 </script>
 
 <style scoped lang="scss" rel="stylesheet/scss">
-    .tab-heading {
+    .filter-tab {
+        background-color: #27348B;
+        color:white;
         border-radius: 3px;
-        background-color: #ebf8ff;
+    }
+
+    .tab-heading {
+
         padding: 10px;
-        color: #27348B;
+
         font-size: 16px;
         cursor: pointer;
         display: flex;
@@ -64,8 +68,8 @@
     }
 
     .tab-active {
-        background-color: #27348B;
-        color: #fff;
+        background-color: #ebf8ff;
+        color: #27348B;
     }
 
     //transition
@@ -74,9 +78,9 @@
         transition: all 0.5s;
         max-height: 1000px;
     }
+
     .fadeHeight-enter,
-    .fadeHeight-leave-to
-    {
+    .fadeHeight-leave-to {
         opacity: 0;
         max-height: 0px;
     }

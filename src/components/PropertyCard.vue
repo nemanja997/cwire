@@ -10,6 +10,11 @@
             <h5 class="card-title">Card title</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
                 content.</p>
+            <ul>
+                <li class="text-weight-bold">Floor: {{floor}}</li>
+                <li class="text-weight-bold">Surface: {{surface}}</li>
+                <li class="text-weight-bold">Rooms: {{rooms}}</li>
+            </ul>
             <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </Vue2InteractDraggable>
@@ -20,6 +25,11 @@
 
     export default {
         name: "PropertyCard",
+        props: {
+            floor: Number,
+            surface: Number,
+            rooms: Number,
+        },
         components: {
             Vue2InteractDraggable
         }

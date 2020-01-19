@@ -1,11 +1,8 @@
 <template>
-    <Vue2InteractDraggable
-            :interact-out-of-sight-x-coordinate="500"
-            :interact-max-rotation="15"
-            interact-lock-y-axis="true"
-            :interact-x-threshold="100"
-            class="rounded-borders shadow-10 card">
-        <img class="card-img-top" src="https://veza.iapi.ch/img/noimage.feb41bd2.png" alt="Card image cap">
+    <div>
+        <div style="min-height:375px;">
+            <img class="card-img-top" src="https://img1.iapi.ch/processor-imgdl-prod/medium/06c88072ff704688.jpeg" alt="Card image cap">
+        </div>
         <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -14,10 +11,12 @@
                 <li class="text-weight-bold">Floor: {{floor}}</li>
                 <li class="text-weight-bold">Surface: {{surface}}</li>
                 <li class="text-weight-bold">Rooms: {{rooms}}</li>
+                <li class="">Price: <span class="price">$54000</span></li>
             </ul>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+
+            <a href="#" class="btn btn-block btn-primary">Details</a>
         </div>
-    </Vue2InteractDraggable>
+    </div>
 </template>
 
 <script>
@@ -37,5 +36,9 @@
 </script>
 
 <style scoped>
-
+.price{
+    font-size: 1.3em;
+    font-weight:bold;
+    color: #28dd4f;
+}
 </style>

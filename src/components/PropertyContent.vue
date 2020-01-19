@@ -20,7 +20,6 @@
 </template>
 
 <script>
-    import { Vue2InteractDraggable } from 'vue2-interact';
 
     export default {
         name: "PropertyCard",
@@ -28,9 +27,6 @@
             floor: Number,
             surface: Number,
             rooms: Number,
-        },
-        components: {
-            Vue2InteractDraggable
         }
     }
 </script>

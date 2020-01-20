@@ -1,17 +1,16 @@
 <template>
     <div>
-        <div style="min-height:200px;">
-            <img class="card-img-top" src="https://img1.iapi.ch/processor-imgdl-prod/medium/06c88072ff704688.jpeg" alt="Card image cap">
+        <div style="min-height:200px;" class="background-image">
+            <img class="card-img-top img-fluid" :src="imageUrl" alt="Card image cap">
         </div>
         <div class="card-body">
             <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+            <p class="card-text">{{description}}</p>
             <ul>
                 <li class="text-weight-bold">Floor: {{floor}}</li>
                 <li class="text-weight-bold">Surface: {{surface}}</li>
                 <li class="text-weight-bold">Rooms: {{rooms}}</li>
-                <li class="">Price: <span class="price">$54000</span></li>
+                <li class="">Price: <span class="price">$ {{rent}}</span></li>
             </ul>
 
             <a href="#" class="btn btn-block btn-primary">Details</a>
@@ -27,6 +26,12 @@
             floor: Number,
             surface: Number,
             rooms: Number,
+            description: String,
+            rent: Number,
+            imageUrl: {
+                type: String,
+                default: './1.jpg'
+            },
         }
     }
 </script>

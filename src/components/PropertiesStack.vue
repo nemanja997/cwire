@@ -1,8 +1,8 @@
 <template>
     <div style="height:700px; user-select: none;">
-        <div v-if="isVisible" class="absolute" style="z-index: 3;margin-right:15px;">
+        <div v-show="showCard" class="absolute" style="z-index: 3;margin-right:15px;">
             <Vue2InteractDraggable
-                    v-show="test"
+                    v-if="isVisible"
                     :interact-out-of-sight-x-coordinate="500"
                     :interact-max-rotation="20"
                     :interact-x-threshold="200"
@@ -11,9 +11,11 @@
                     @draggedLeft="disliked(current.id)"
                     class="rounded-borders card card-one">
 
-                <property-content :floor="current.floor"
+                <property-content :floor="current.data.properties.floor"
                                   :surface="current.surface"
-                                  :rooms="current.rooms">
+                                  :rooms="current.data.properties.rooms"
+                                  :rent="current.data.gross_rent"
+                                  :image-url="current.images[0]">
                 </property-content>
 
             </Vue2InteractDraggable>
@@ -22,9 +24,11 @@
              class="rounded-borders card card-two absolute"
              :class="{'on-top': onTop}"
              style="z-index: 2;margin-right:15px;">
-            <property-content :floor="next.floor"
+            <property-content :floor="next.data.properties.floor"
                               :surface="next.surface"
-                              :rooms="next.rooms">
+                              :rooms="next.data.properties.rooms"
+                              :rent="next.data.gross_rent"
+                              :image-url="next.images[0]">
             </property-content>
         </div>
         <transition name="fade">
@@ -32,9 +36,11 @@
                  :class="{'second': onTop}"
                  class="rounded-borders card card-three absolute"
                  style="z-index: 1;margin-right:15px;">
-                <property-content :floor="next.floor"
+                <property-content :floor="next.data.properties.floor"
                                   :surface="next.surface"
-                                  :rooms="next.rooms">
+                                  :rooms="next.data.properties.rooms"
+                                  :rent="next.data.gross_rent"
+                                  :image-url="next.images[0]">
                 </property-content>
             </div>
         </transition>
@@ -44,6 +50,7 @@
 <script>
     import {Vue2InteractDraggable} from 'vue2-interact';
     import PropertyContent from './PropertyContent';
+    import {mapState} from 'vuex';
 
     export default {
         name: "PropertiesStack",
@@ -56,42 +63,19 @@
                 isVisible: true,
                 onTop: false,
                 index: 0,
-                test: true,
-                properties: [
-                    {
-                        id: 'one',
-                        floor: 1,
-                        surface: 56,
-                        rooms: 2,
-                    },
-                    {
-                        id: 'two',
-                        floor: 0,
-                        surface: 120,
-                        rooms: 4,
-                    },
-                    {
-                        id: 'three',
-                        floor: 2,
-                        surface: 340,
-                        rooms: 6,
-                    },
-                    {
-                        id: 'four',
-                        floor: 2,
-                        surface: 340,
-                        rooms: 6,
-                    },
-                    {
-                        id: 'five',
-                        floor: 2,
-                        surface: 340,
-                        rooms: 6,
-                    },
-                ]
+                showCard: true,
+                properties: []
             }
         },
+        mounted() {
+
+            this.properties = this.stateProperties;
+            console.log(this.properties);
+        },
         computed: {
+            ...mapState({
+                stateProperties: 'detailedProperties',
+            }),
             current() {
                 return this.properties[this.index]
             },
@@ -112,16 +96,16 @@
                 this.onTop = true;
                 setTimeout(() => {
                     this.isVisible = false;
-                    this.test = false;
-                }, 200)
+                    this.showCard = false;
+                }, 200);
                 setTimeout(() => {
                     this.onTop = false;
+                    this.showCard = true;
+                }, 1000);
+                setTimeout( () => {
                     this.isVisible = true;
                     this.index++;
-                }, 1000)
-                setTimeout(() => {
-                    this.test = true;
-                }, 1100)
+                },1000)
             }
         }
     }

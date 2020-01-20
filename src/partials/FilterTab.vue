@@ -54,6 +54,7 @@
         background-color: #27348B;
         color:white;
         border-radius: 3px;
+        margin: 15px 0px;
     }
 
     .tab-heading {
@@ -64,7 +65,6 @@
         cursor: pointer;
         display: flex;
         justify-content: space-between;
-        margin-bottom: 15px;
     }
 
     .tab-active {

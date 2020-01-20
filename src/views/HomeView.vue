@@ -18,6 +18,9 @@
         components: {
             FilterTab,
             PropertiesStack
+        },
+        mounted(){
+            this.$store.dispatch('addSearchedProperties').then(() => console.log('Promise all finished.'));
         }
     }
 </script>

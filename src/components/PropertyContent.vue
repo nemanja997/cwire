@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="min-height:375px;">
+        <div style="min-height:200px;">
             <img class="card-img-top" src="https://img1.iapi.ch/processor-imgdl-prod/medium/06c88072ff704688.jpeg" alt="Card image cap">
         </div>
         <div class="card-body">

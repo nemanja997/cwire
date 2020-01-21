@@ -19,6 +19,7 @@
         <transition name="fadeHeight" mode="out-in">
 
             <div v-if="currentlyExpanded" class="p-3">
+                <hr class="mt-0">
                 <div class="row">
                     <div class="col-12 mb-3">
                         Property type:
@@ -44,7 +45,28 @@
 
                     </div>
                     <div class="col-12">
+                        <vue-slider v-model="price"
+                                    :min="0"
+                                    :max="1000000"
+                                    :interval="1000"></vue-slider>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        Number of rooms:
 
+                    </div>
+                    <div class="col-12">
+                        <vue-slider v-model="rooms"
+                                    :min="1"
+                                    :max="10"
+                                    :interval="0.5"></vue-slider>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                        <button  class="btn btn-primary mt-3">Filter</button>
                     </div>
                 </div>
             </div>
@@ -55,8 +77,14 @@
 </template>
 
 <script>
+    import VueSlider from 'vue-slider-component';
+    import 'vue-slider-component/theme/default.css';
+
     export default {
         name: "Tab",
+        components: {
+            VueSlider
+        },
         props: {
             expanded: {
                 type: Boolean,
@@ -69,7 +97,10 @@
         data() {
             return {
                 currentlyExpanded: this.expanded,
-                propertyType: ['HOUSE', 'APARTMENT']
+                type: ['HOUSE', 'APARTMENT'],
+                price: [0,1000000],
+                rooms:[0,10]
+
             }
         },
         methods: {

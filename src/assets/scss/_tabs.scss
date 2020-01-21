@@ -31,3 +31,12 @@
   opacity: 0;
   max-height: 0px;
 }
+
+//price slider
+.vue-slider-process {
+  background-color: $primary !important;
+}
+.vue-slider-dot-tooltip-inner {
+  border-color: $primary !important;
+  background-color: $primary !important;
+}

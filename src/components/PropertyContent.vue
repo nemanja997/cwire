@@ -13,7 +13,7 @@
                 <li class="">Price: <span class="price">$ {{rent}}</span></li>
             </ul>
 
-            <a href="#" class="btn btn-block btn-primary">Details</a>
+            <button @click="goToDetails" class="btn btn-block btn-primary">Details</button>
         </div>
     </div>
 </template>
@@ -23,6 +23,7 @@
     export default {
         name: "PropertyCard",
         props: {
+            id: String,
             floor: Number,
             surface: Number,
             rooms: Number,
@@ -32,6 +33,12 @@
                 type: String,
                 default: './1.jpg'
             },
+        },
+        methods:{
+           goToDetails(){
+               console.log('otisao');
+               this.$router.push({ name: 'property', params: { id: this.id } })
+           }
         }
     }
 </script>

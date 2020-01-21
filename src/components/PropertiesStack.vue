@@ -7,11 +7,12 @@
                     :interact-max-rotation="20"
                     :interact-x-threshold="200"
                     :interact-y-threshold="200"
-                    @draggedRight="liked(current.id)"
-                    @draggedLeft="disliked(current.id)"
+                    @draggedRight="liked(current.data.id)"
+                    @draggedLeft="disliked(current.data.id)"
                     class="rounded-borders card card-one">
 
-                <property-content :floor="current.data.properties.floor"
+                <property-content :id="current.data.id"
+                                  :floor="current.data.properties.floor"
                                   :surface="current.surface"
                                   :rooms="current.data.properties.rooms"
                                   :rent="current.data.gross_rent"
@@ -24,7 +25,8 @@
              class="rounded-borders card card-two absolute"
              :class="{'on-top': onTop}"
              style="z-index: 2;margin-right:15px;">
-            <property-content :floor="next.data.properties.floor"
+            <property-content :id="next.data.id"
+                              :floor="next.data.properties.floor"
                               :surface="next.surface"
                               :rooms="next.data.properties.rooms"
                               :rent="next.data.gross_rent"
@@ -36,7 +38,8 @@
                  :class="{'second': onTop}"
                  class="rounded-borders card card-three absolute"
                  style="z-index: 1;margin-right:15px;">
-                <property-content :floor="next.data.properties.floor"
+                <property-content :id="next.data.id"
+                                  :floor="next.data.properties.floor"
                                   :surface="next.surface"
                                   :rooms="next.data.properties.rooms"
                                   :rent="next.data.gross_rent"
@@ -68,9 +71,7 @@
             }
         },
         mounted() {
-
             this.properties = this.stateProperties;
-            console.log(this.properties);
         },
         computed: {
             ...mapState({
@@ -102,10 +103,10 @@
                     this.onTop = false;
                     this.showCard = true;
                 }, 1000);
-                setTimeout( () => {
+                setTimeout(() => {
                     this.isVisible = true;
                     this.index++;
-                },1000)
+                }, 1000)
             }
         }
     }

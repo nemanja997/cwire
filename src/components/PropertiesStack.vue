@@ -9,7 +9,7 @@
                     :interact-y-threshold="200"
                     @draggedRight="liked(current.data.id)"
                     @draggedLeft="disliked(current.data.id)"
-                    class="rounded-borders card card-one">
+                    class=" card card-one">
 
                 <property-content :title="current.data.title"
                                   :id="current.data.id"
@@ -25,7 +25,7 @@
             </Vue2InteractDraggable>
         </div>
         <div v-if="next"
-             class="rounded-borders card card-two absolute"
+             class="card card-two absolute"
              :class="{'on-top': onTop}"
              style="z-index: 2;margin-right:15px;">
             <property-content :title="next.data.title"
@@ -36,13 +36,14 @@
                               :image-url="next.images[0]"
                               :street="next.data.location.street"
                               :city="next.data.location.city"
+                              :type="next.data.property_type"
                               disabledButton>
             </property-content>
         </div>
         <transition name="fade">
             <div v-if="index + 2 < properties.length"
                  :class="{'second': onTop}"
-                 class="rounded-borders card card-three absolute"
+                 class="card card-three absolute"
                  style="z-index: 1;margin-right:15px;">
                 <property-content :title="next.data.title"
                                   :id="next.data.id"
@@ -52,6 +53,7 @@
                                   :image-url="next.images[0]"
                                   :street="next.data.location.street"
                                   :city="next.data.location.city"
+                                  :type="next.data.property_type"
                                   disabledButton>
                 </property-content>
             </div>

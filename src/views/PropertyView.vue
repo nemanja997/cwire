@@ -1,40 +1,47 @@
 <template>
-    <div class="container-fluid" style="margin-top:15px;">
+    <!--<div class="container-fluid" style="margin-top:15px;">-->
 
-        <!--arrow for going back-->
-        <div @click="goBack" class="arrow-back-container">
-            <i class="fas fa-chevron-left"></i>
-        </div>
 
-        <div class="card text-center">
-            <h1>{{property.data.id}}</h1>
-            <div class="img-slider">
-                <swiper :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
-                    <!-- slides -->
-                    <swiper-slide v-for="image in property.images" :key="image">
-                        <img :src="image" class="img-fluid" alt="">
-                    </swiper-slide>
-                    <!-- Optional controls -->
-                    <div class="swiper-pagination" slot="pagination"></div>
-                    <div class="swiper-button-prev" slot="button-prev"></div>
-                    <div class="swiper-button-next" slot="button-next"></div>
-                </swiper>
+
+        <div class="card">
+            <!--arrow for going back-->
+            <div @click="goBack" class="arrow-back-container">
+                <i class="fas fa-chevron-left"></i>
             </div>
+            <div class="img-slider">
+                <agile :mobileFirst="true">
+                    <img v-for="image in property.images" :key="image" :src="image" class="img-fluid" alt="">
+                </agile>
+            </div>
+            <div class="card-body">
+                <h4 class="font-weight-lighter">{{property.data.title}}</h4>
+                <h5 class="font-weight-lighter">{{property.data.location.street}}, {{property.data.location.city}}</h5>
+                <span class="price">{{property.data.gross_rent}} CHF </span> /year<br>
+                (<span class="font-weight-bold">{{monthlyRent}} CHF</span> /month)
+                <hr>
+                <h5 class="font-weight-bold">Description</h5>
+                <p class="">{{property.data.description}}</p>
+                <hr>
+                <h5 class="font-weight-bold">Basic information</h5>
+                <ul>
+                    <li>
+                        Floor:
+                    </li>
+                </ul>
+            </div>
+
         </div>
 
-    </div>
+    <!--</div>-->
 </template>
 
 <script>
     import {mapState} from 'vuex';
-    import 'swiper/dist/css/swiper.css'
-    import {swiper, swiperSlide} from 'vue-awesome-swiper'
-
+    import { VueAgile } from 'vue-agile'
     export default {
         name: "PropertyView",
         components: {
-            swiper,
-            swiperSlide
+            agile: VueAgile
         },
         created() {
             this.property = this.properties.find((property) => {
@@ -43,13 +50,16 @@
         },
         data() {
             return {
-                currentProperty: {}
+                property: {}
             }
         },
         computed: {
             ...mapState({
                 properties: 'detailedProperties'
-            })
+            }),
+            monthlyRent(){
+                return Math.floor(this.property.data.net_rent /12);
+            }
         },
         methods:{
             goBack(){
@@ -60,5 +70,6 @@
 </script>
 
 <style scoped>
+
 
 </style>

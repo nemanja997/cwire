@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="min-height:200px;" class="background-image">
+        <div class="card-img-container">
             <img class="card-img-top img-fluid" :src="imageUrl" alt="Card image cap">
         </div>
         <div class="card-body">
@@ -37,9 +37,15 @@
 </script>
 
 <style scoped>
-.price{
-    font-size: 1.3em;
-    font-weight:bold;
-    color: #28dd4f;
-}
+    .price {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #28dd4f;
+    }
+
+    .card-img-container {
+        max-width: 500px;
+        max-height: 333px;
+        overflow: hidden;
+    }
 </style>

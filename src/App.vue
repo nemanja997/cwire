@@ -8,6 +8,9 @@
                  :width="200"
                  :is-full-page="true"></loading>
         <div  v-if="!isLoading">
+            <filter-tab title="Filters" :expanded="false">
+
+            </filter-tab>
             <router-view></router-view>
         </div>
     </div>
@@ -16,11 +19,13 @@
 
 <script>
     import Loading from 'vue-loading-overlay';
+    import FilterTab from './partials/FilterTab';
 
     export default {
         name: 'app',
         components: {
-            Loading
+            Loading,
+            FilterTab
         },
         data() {
             return {

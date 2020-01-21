@@ -13,7 +13,6 @@
 
                 <property-content :id="current.data.id"
                                   :floor="current.data.properties.floor"
-                                  :surface="current.surface"
                                   :rooms="current.data.properties.rooms"
                                   :rent="current.data.gross_rent"
                                   :image-url="current.images[0]">
@@ -27,7 +26,6 @@
              style="z-index: 2;margin-right:15px;">
             <property-content :id="next.data.id"
                               :floor="next.data.properties.floor"
-                              :surface="next.surface"
                               :rooms="next.data.properties.rooms"
                               :rent="next.data.gross_rent"
                               :image-url="next.images[0]">
@@ -40,7 +38,6 @@
                  style="z-index: 1;margin-right:15px;">
                 <property-content :id="next.data.id"
                                   :floor="next.data.properties.floor"
-                                  :surface="next.surface"
                                   :rooms="next.data.properties.rooms"
                                   :rent="next.data.gross_rent"
                                   :image-url="next.images[0]">
@@ -54,6 +51,7 @@
     import {Vue2InteractDraggable} from 'vue2-interact';
     import PropertyContent from './PropertyContent';
     import {mapState} from 'vuex';
+    import {addPropertyToLocalStorage} from '../helpers/localStorage';
 
     export default {
         name: "PropertiesStack",
@@ -94,6 +92,7 @@
                 console.log(`disliked ${propertyId}`);
             },
             removeFirstCard() {
+                addPropertyToLocalStorage(this.current.data.id);
                 this.onTop = true;
                 setTimeout(() => {
                     this.isVisible = false;
@@ -107,6 +106,7 @@
                     this.isVisible = true;
                     this.index++;
                 }, 1000)
+
             }
         }
     }

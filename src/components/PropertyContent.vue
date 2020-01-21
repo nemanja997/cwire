@@ -4,7 +4,8 @@
             <img class="card-img-top img-fluid" :src="imageUrl" alt="Card image cap">
         </div>
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <h5 class="card-title">{{street}}</h5>
+            <h6>{{city}}</h6>
             <p class="card-text">{{description}}</p>
             <ul>
                 <li class="text-weight-bold">Floor: {{floor}}</li>
@@ -24,6 +25,8 @@
         name: "PropertyCard",
         props: {
             id: String,
+            street: String,
+            city: String,
             floor: Number,
             surface: Number,
             rooms: Number,

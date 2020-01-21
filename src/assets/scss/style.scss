@@ -14,3 +14,19 @@ $primary: #27348b;
 body{
   background-color: #e4e3f6;
 }
+
+.img-slider{
+  max-height:330px;
+  background-color: #f1f1f1;
+}
+.arrow-back-container{
+  position:fixed;
+  left:0;
+  top:25px;
+  color:white;
+  background: $primary;
+  padding:15px;
+  z-index:3;
+  border-radius: 0px 0.25rem 0.25rem 0px;
+  font-size:20px;
+}

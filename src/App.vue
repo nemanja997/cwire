@@ -1,20 +1,40 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+    <div id="app">
+        <!--loader-->
+        <loading :active.sync="isLoading"
+                 :can-cancel="false"
+                 color="#27348b"
+                 :height="150"
+                 :width="200"
+                 :is-full-page="true"></loading>
+        <div  v-if="!isLoading">
+            <router-view></router-view>
+        </div>
+    </div>
 
 </template>
 
 <script>
-import HomeView from './views/HomeView';
-export default {
-  name: 'app',
-  components: {
-      HomeView
-  }
-}
+    import Loading from 'vue-loading-overlay';
+
+    export default {
+        name: 'app',
+        components: {
+            Loading
+        },
+        data() {
+            return {
+                isLoading: true,
+            }
+        },
+        mounted() {
+            this.$store.dispatch('addSearchedProperties').then(() => {
+                this.isLoading = false;
+            });
+        }
+    }
 </script>
 
-<style lang="scss"  rel="stylesheet/scss">
-  @import "./assets/scss/style";
+<style lang="scss" rel="stylesheet/scss">
+    @import "./assets/scss/style";
 </style>

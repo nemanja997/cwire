@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import { isPropertyVisited } from '../helpers/localStorage';
 
 Vue.use(Vuex);
 
@@ -26,7 +27,9 @@ export default new Vuex.Store({
 
                     context.commit('addSearchedProperties', searchedProperties);
                     searchedProperties.forEach((property) => {
-                        promiseArr.push(context.dispatch('getPropertyDetails', property._id));
+                        if(!isPropertyVisited(property._id)){
+                            promiseArr.push(context.dispatch('getPropertyDetails', property._id));
+                        }
                     });
                 })
                 .then((response) => {

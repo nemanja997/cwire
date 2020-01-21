@@ -4,7 +4,7 @@
 
             <img class="card-img-top img-fluid" :src="imageUrl" alt="Card image cap">
             <span class="price-ribbon">
-                    {{rent}} CHF
+                    {{rent}} <span style="font-size:14px;">CHF</span>
             </span>
         </div>
         <div class="card-body">
@@ -15,33 +15,33 @@
                 <span v-if="street">,</span>
                 {{city}}</p>
             <hr>
-            <div class="row">
-                <div class="col-6">
-                    Type:
+            <div class="row my-1">
+                <div class="col-6 property-data-text">
+                    Type
                 </div>
                 <div class="col-6 font-weight-bold text-lowercase">
                     {{type}}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-6">
-                    Floor:
+            <div class="row my-1">
+                <div class="col-6 property-data-text">
+                    Floor
                 </div>
                 <div class="col-6 font-weight-bold">
                     {{floor}}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-6">
-                    Surface:
+            <div class="row my-1">
+                <div class="col-6 property-data-text">
+                    Surface
                 </div>
                 <div class="col-6 font-weight-bold">
-                    {{surface}}
+                    {{surface}}  m²
                 </div>
             </div>
-            <div class="row mb-4">
-                <div class="col-6">
-                    Rooms:
+            <div class="row my-1 mb-3">
+                <div class="col-6 property-data-text">
+                    Rooms
                 </div>
                 <div class="col-6 font-weight-bold">
                     {{rooms}}

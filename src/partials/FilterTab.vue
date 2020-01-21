@@ -19,8 +19,34 @@
         <transition name="fadeHeight" mode="out-in">
 
             <div v-if="currentlyExpanded" class="p-3">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        Property type:
+
+                    </div>
+                    <div class="col-6">
+                        <label class="radio-container">House
+                            <input type="checkbox" id="house" value="HOUSE" v-model="propertyType">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="col-6">
+                        <label class="radio-container">Apartment
+                            <input type="checkbox" id="apartment" value="APARTMENT" v-model="propertyType">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
                 <hr>
-                <h1>pozzz</h1>
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        Price:
+
+                    </div>
+                    <div class="col-12">
+
+                    </div>
+                </div>
             </div>
 
         </transition>
@@ -34,7 +60,7 @@
         props: {
             expanded: {
                 type: Boolean,
-                default: false
+                default: false,
             },
             title: {
                 type: String
@@ -42,7 +68,8 @@
         },
         data() {
             return {
-                currentlyExpanded: this.expanded
+                currentlyExpanded: this.expanded,
+                propertyType: ['HOUSE', 'APARTMENT']
             }
         },
         methods: {

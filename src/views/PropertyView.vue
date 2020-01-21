@@ -16,8 +16,8 @@
             <div class="card-body">
                 <h4 class="font-weight-lighter">{{property.data.title}}</h4>
                 <h5 class="font-weight-lighter">{{property.data.location.street}}, {{property.data.location.city}}</h5>
-                <span class="price">{{property.data.gross_rent}} CHF </span> /year<br>
-                (<span class="font-weight-bold">{{monthlyRent}} CHF</span> /month)
+                <span class="price">{{property.data.gross_rent}} <span style="font-size:18px;">CHF</span> </span> /year<br>
+                (<span class="font-weight-bold">{{monthlyRent}} <span style="font-size:14px;">CHF</span></span> /month)
                 <hr>
                 <h5 class="font-weight-bold">Description</h5>
                 <p class="">{{property.data.description}}</p>

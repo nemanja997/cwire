@@ -19,7 +19,8 @@
                                   :image-url="current.images[0]"
                                   :street="current.data.location.street"
                                   :city="current.data.location.city"
-                                  :type="current.data.property_type">
+                                  :type="current.data.property_type"
+                                  :surface="current.data.properties.surface">
                 </property-content>
 
             </Vue2InteractDraggable>
@@ -37,6 +38,7 @@
                               :street="next.data.location.street"
                               :city="next.data.location.city"
                               :type="next.data.property_type"
+                              :surface="next.data.properties.surface"
                               disabledButton>
             </property-content>
         </div>
@@ -54,6 +56,7 @@
                                   :street="next.data.location.street"
                                   :city="next.data.location.city"
                                   :type="next.data.property_type"
+                                  :surface="next.data.properties.surface"
                                   disabledButton>
                 </property-content>
             </div>

@@ -4,7 +4,7 @@
          :class="{'tab-active': currentlyExpanded}">
         <div class=" tab-heading"
              @click="toggle">
-            <span>{{title}}</span>
+            <span><span><i class="fas fa-sliders-h"></i></span> <span class="ml-2">{{title}}</span></span>
 
             <!--must use v-show instead of class binding because icon will not render-->
             <span v-show="currentlyExpanded">
@@ -15,9 +15,13 @@
             </span>
 
         </div>
+
         <transition name="fadeHeight" mode="out-in">
 
-            <slot v-if="currentlyExpanded"></slot>
+            <div v-if="currentlyExpanded" class="p-3">
+                <hr>
+                <h1>pozzz</h1>
+            </div>
 
         </transition>
     </div>
@@ -50,38 +54,5 @@
 </script>
 
 <style scoped lang="scss" rel="stylesheet/scss">
-    .filter-tab {
-        background-color: #27348B;
-        color:white;
-        border-radius: 3px;
-        margin: 15px 0px;
-    }
 
-    .tab-heading {
-
-        padding: 10px;
-
-        font-size: 16px;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .tab-active {
-        background-color: #ebf8ff;
-        color: #27348B;
-    }
-
-    //transition
-    .fadeHeight-enter-active,
-    .fadeHeight-leave-active {
-        transition: all 0.5s;
-        max-height: 1000px;
-    }
-
-    .fadeHeight-enter,
-    .fadeHeight-leave-to {
-        opacity: 0;
-        max-height: 0px;
-    }
 </style>

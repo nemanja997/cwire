@@ -11,11 +11,15 @@
                     @draggedLeft="disliked(current.data.id)"
                     class="rounded-borders card card-one">
 
-                <property-content :id="current.data.id"
+                <property-content :title="current.data.title"
+                                  :id="current.data.id"
                                   :floor="current.data.properties.floor"
                                   :rooms="current.data.properties.rooms"
                                   :rent="current.data.gross_rent"
-                                  :image-url="current.images[0]">
+                                  :image-url="current.images[0]"
+                                  :street="current.data.location.street"
+                                  :city="current.data.location.city"
+                                  :type="current.data.property_type">
                 </property-content>
 
             </Vue2InteractDraggable>
@@ -24,11 +28,15 @@
              class="rounded-borders card card-two absolute"
              :class="{'on-top': onTop}"
              style="z-index: 2;margin-right:15px;">
-            <property-content :id="next.data.id"
+            <property-content :title="next.data.title"
+                              :id="next.data.id"
                               :floor="next.data.properties.floor"
                               :rooms="next.data.properties.rooms"
                               :rent="next.data.gross_rent"
-                              :image-url="next.images[0]">
+                              :image-url="next.images[0]"
+                              :street="next.data.location.street"
+                              :city="next.data.location.city"
+                              disabledButton>
             </property-content>
         </div>
         <transition name="fade">
@@ -36,11 +44,15 @@
                  :class="{'second': onTop}"
                  class="rounded-borders card card-three absolute"
                  style="z-index: 1;margin-right:15px;">
-                <property-content :id="next.data.id"
+                <property-content :title="next.data.title"
+                                  :id="next.data.id"
                                   :floor="next.data.properties.floor"
                                   :rooms="next.data.properties.rooms"
                                   :rent="next.data.gross_rent"
-                                  :image-url="next.images[0]">
+                                  :image-url="next.images[0]"
+                                  :street="next.data.location.street"
+                                  :city="next.data.location.city"
+                                  disabledButton>
                 </property-content>
             </div>
         </transition>

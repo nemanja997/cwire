@@ -21,7 +21,7 @@ export default new Vuex.Store({
     actions: {
         addSearchedProperties(context) {
             let promiseArr = [];
-            return axios.get('https://veza.iapi.ch/esearch/vezarent3/_search')
+            return axios.get('https://veza.iapi.ch/esearch/vezarent3/_search?size=100')
                 .then((response) => {
                     let searchedProperties = response.data.hits.hits;
 
@@ -46,8 +46,7 @@ export default new Vuex.Store({
                     context.commit('addDetailsOfProperty', response.data);
                 })
                 .catch((error) => {
-                    console.log(`${escapedId} promise error`);
-                    console.log(error);
+                    //handle error
                 });
         }
     }

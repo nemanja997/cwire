@@ -2,9 +2,7 @@
     <section class="container position-relative">
 
         <filter-tab title="Filters" :expanded="false">
-            <div>
-                <h1>Filters</h1>
-            </div>
+
         </filter-tab>
         <properties-stack></properties-stack>
     </section>

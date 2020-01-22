@@ -57,10 +57,8 @@ export default new Vuex.Store({
                 });
         },
         addFilteredProperties(context, url) {
-            console.log('zzz');
             context.commit('emptyDetailedProperties');
             let promiseArr = [];
-            console.log(`${url}&size=100`);
             return axios.get(`${url}&size=100`)
                 .then((response) => {
                     let searchedProperties = response.data.hits.hits;

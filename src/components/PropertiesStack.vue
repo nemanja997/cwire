@@ -115,10 +115,10 @@
             },
             disliked(propertyId) {
                 this.removeFirstCard();
-                this.sendFeedback(propertyId,'dislike');
+                this.sendFeedback(propertyId, 'dislike');
             },
-            goToDetails(propertyId){
-                this.sendFeedback(propertyId,'interested');
+            goToDetails(propertyId) {
+                this.sendFeedback(propertyId, 'interested');
             },
             removeFirstCard() {
                 addPropertyToLocalStorage(this.current.data.id);
@@ -134,10 +134,10 @@
                     this.showCard = true;
                     this.isVisible = true;
                     this.index++;
-                    this.$store.commit('changeIndex',this.index);
+                    this.$store.commit('changeIndex', this.index);
                 }, 1000);
             },
-            sendFeedback(id,value){
+            sendFeedback(id, value) {
                 let feedback = {
                     id: id,
                     reaction: value

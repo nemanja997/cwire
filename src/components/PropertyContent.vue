@@ -36,7 +36,7 @@
                     Surface
                 </div>
                 <div class="col-6 font-weight-bold">
-                    {{surface}}  m²
+                    {{surface}} m²
                 </div>
             </div>
             <div class="row my-1 mb-3">

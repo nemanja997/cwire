@@ -40,7 +40,7 @@
                                    id="apartment"
                                    value="APARTMENT"
                                    v-model="filters.type"
-                            checked="checked">
+                                   checked="checked">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -76,7 +76,7 @@
                 <hr>
                 <div class="row">
                     <div class="col text-right">
-                        <button @click="filterProperties" class="btn btn-primary mt-3"> Filter </button>
+                        <button @click="filterProperties" class="btn btn-primary mt-3"> Filter</button>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@
 <script>
     import VueSlider from 'vue-slider-component';
     import 'vue-slider-component/theme/default.css';
-    import { getLastFilters, setLastFilters } from "../helpers/localStorage";
+    import {getLastFilters, setLastFilters} from "../helpers/localStorage";
 
     export default {
         name: "Tab",
@@ -105,8 +105,8 @@
                 type: String
             }
         },
-        created(){
-            if(getLastFilters()){
+        created() {
+            if (getLastFilters()) {
                 this.filters = getLastFilters();
             }
         },
@@ -115,8 +115,8 @@
                 currentlyExpanded: this.expanded,
                 filters: {
                     type: ['HOUSE', 'APARTMENT'],
-                    price: [0,1000000],
-                    rooms:[1,10]
+                    price: [0, 1000000],
+                    rooms: [1, 10]
                 }
             }
         },
@@ -124,32 +124,34 @@
             toggle() {
                 this.currentlyExpanded = !this.currentlyExpanded;
             },
-            filterProperties(){
+            filterProperties() {
+                //emit event for loading to start
                 Event.$emit('newFilter');
+
                 let queryUrl = 'https://veza.iapi.ch/esearch/vezarent3/_search?q=';
+
                 queryUrl += `${this.getPriceString()}%20AND%20${this.getRoomsString()}`;
-                if(this.getTypeString() !== ''){
-                    queryUrl +=  `%20AND%20${this.getTypeString()}`;
+                if (this.getTypeString() !== '') {
+                    queryUrl += `%20AND%20${this.getTypeString()}`;
                 }
                 setLastFilters(this.filters);
-                this.$store.dispatch('addFilteredProperties', queryUrl )
-                    .then(() =>{
+                this.$store.dispatch('addFilteredProperties', queryUrl)
+                    .then(() => {
+
+                        //emit event for loading to finish
                         Event.$emit('goTFilteredProperties');
                     });
-
-
-
             },
-            getPriceString(){
+            getPriceString() {
                 return `gross_rent:>${this.filters.price[0]}%20AND%20gross_rent:<${this.filters.price[1]}`;
             },
-            getTypeString(){
-                if(this.filters.type.length === 1){
+            getTypeString() {
+                if (this.filters.type.length === 1) {
                     return `property_type:${this.filters.type[0]}`;
                 }
                 return '';
             },
-            getRoomsString(){
+            getRoomsString() {
                 return `properties.rooms:>${this.filters.rooms[0]}%20AND%20properties.rooms:<${this.filters.rooms[1]}`;
             }
         }

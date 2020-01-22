@@ -7,11 +7,9 @@ export function addPropertyToLocalStorage(propertyId) {
         for (let i = 0; i < visitedProperties.length; i++) {
             if (visitedProperties[i] === propertyId) {
                 //if it already exists in local storage just return
-                console.log("property already exists");
                 return;
             }
         }
-        console.log("property added to localStorage");
         visitedProperties.push(propertyId);
         localStorage.setItem('visitedProperties', JSON.stringify(visitedProperties));
 
@@ -27,7 +25,6 @@ export function isPropertyVisited(propertyId) {
     if (visitedProperties) {
         for (let i = 0; i < visitedProperties.length; i++) {
             if (visitedProperties[i] === propertyId) {
-                console.log("property is visited");
                 return true;
             }
         }

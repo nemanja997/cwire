@@ -7,7 +7,7 @@
                  :height="150"
                  :width="200"
                  :is-full-page="true"></loading>
-        <div  v-if="!isLoading">
+        <div v-if="!isLoading">
 
             <router-view></router-view>
         </div>
@@ -18,6 +18,7 @@
 <script>
     import Loading from 'vue-loading-overlay';
     import Footer from './partials/Footer';
+
     export default {
         name: 'app',
         components: {
@@ -31,6 +32,13 @@
         },
         mounted() {
             this.$store.dispatch('addRandomProperties').then(() => {
+                this.isLoading = false;
+            });
+
+            Event.$on('newFilter', () => {
+                this.isLoading = true;
+            });
+            Event.$on('goTFilteredProperties', () => {
                 this.isLoading = false;
             });
         }

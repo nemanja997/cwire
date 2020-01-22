@@ -77,7 +77,7 @@
             rent: Number,
             imageUrl: {
                 type: String,
-                default: './1.jpg'
+                default: 'https://veza.iapi.ch/img/noimage.feb41bd2.png'
             },
         },
         methods: {

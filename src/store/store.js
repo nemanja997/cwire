@@ -20,6 +20,9 @@ export default new Vuex.Store({
         },
         changeIndex(state, index){
             state.currentIndex = index;
+        },
+        emptyDetailedProperties(state){
+            state.detailedProperties = [];
         }
     },
     actions: {
@@ -40,7 +43,7 @@ export default new Vuex.Store({
                     return Promise.all(promiseArr);
                 })
                 .catch((error) => {
-
+                    //handle error
                 });
         },
         getPropertyDetails(context, propertyId) {
@@ -51,6 +54,29 @@ export default new Vuex.Store({
                 })
                 .catch((error) => {
                     //handle error
+                });
+        },
+        addFilteredProperties(context, url) {
+            console.log('zzz');
+            context.commit('emptyDetailedProperties');
+            let promiseArr = [];
+            console.log(`${url}&size=100`);
+            return axios.get(`${url}&size=100`)
+                .then((response) => {
+                    let searchedProperties = response.data.hits.hits;
+
+                    context.commit('addSearchedProperties', searchedProperties);
+                    searchedProperties.forEach((property) => {
+                        if(!isPropertyVisited(property._id)){
+                            promiseArr.push(context.dispatch('getPropertyDetails', property._id));
+                        }
+                    });
+                })
+                .then((response) => {
+                    return Promise.all(promiseArr);
+                })
+                .catch((error) => {
+
                 });
         }
     }

@@ -125,6 +125,7 @@
                 this.currentlyExpanded = !this.currentlyExpanded;
             },
             filterProperties(){
+                Event.$emit('newFilter');
                 let queryUrl = 'https://veza.iapi.ch/esearch/vezarent3/_search?q=';
                 queryUrl += `${this.getPriceString()}%20AND%20${this.getRoomsString()}`;
                 if(this.getTypeString() !== ''){
@@ -132,6 +133,11 @@
                 }
                 setLastFilters(this.filters);
                 console.log(queryUrl);
+                this.$store.dispatch('addFilteredProperties', queryUrl )
+                    .then(() =>{
+                        Event.$emit('goTFilteredProperties');
+                    });
+
 
 
             },

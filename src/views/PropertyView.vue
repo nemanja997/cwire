@@ -9,7 +9,10 @@
         </div>
         <div class="img-slider">
             <agile :mobileFirst="true">
-                <img v-for="image in property.images" :key="image" :src="image" class="img-fluid" alt="">
+                <template v-if="property.images.length > 0">
+                    <img v-for="image in property.images" :key="image" :src="image" class="img-fluid" alt="">
+                </template>
+                <img v-else src="https://veza.iapi.ch/img/noimage.feb41bd2.png" alt="">
             </agile>
         </div>
         <div class="card-body">

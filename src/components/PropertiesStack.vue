@@ -142,9 +142,8 @@
                     id: id,
                     reaction: value
                 };
-                axios.post('logs.iapi.ch/myproject/feedback.json', feedback);
-                console.log('feedback sent');
-                console.log(feedback);
+                //mocked feedgack route
+                // axios.post('logs.iapi.ch/myproject/feedback.json', feedback);
             }
         }
     }

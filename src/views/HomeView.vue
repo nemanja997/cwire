@@ -22,7 +22,7 @@
         components: {
             PropertiesStack,
             FilterTab
-        },
+        }
 
     }
 </script>

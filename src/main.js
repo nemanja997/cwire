@@ -8,6 +8,9 @@ import '@fortawesome/fontawesome-free/js/all.js'
 
 Vue.config.productionTip = false;
 
+//helper for global event listening
+window.Event = new Vue();
+
 new Vue({
     store,
     router,

@@ -27,31 +27,31 @@ Loader is shown whenever we are fetching data from the external API. (On initial
 
 ## Choice of libraries
 
-#### Axios:
+### Axios:
 
 For easy handling AJAX requests.
 
-#### vue-slider-component:
+### vue-slider-component:
 
 Used a slider for fliters with a range. <br>
 It is easy to implement with a lot of props and event that you can use.<br>
 It has easy binding with the data.
 
-#### vue-agile:
+### vue-agile:
 
 After testing a couple of carousel packages for vue this one came in as the most customizable and best behaving regarding responsivenes, also it was easiest to customize its css to match the theme of the app.
 
-#### vue2-interact-draggable:
+### vue2-interact-draggable:
 
 AS I decided to go with the Tinder like UI for the app I neaded something that will handle draging of the cards out of the box.
 This wrapper component for Vue.js is built on top of **interact.js** library.<br>
 It has clear documentation and a lots of features and props so I decidetd that it will do the job on this app.
 
-#### vue-loading-overlay:
+####vue-loading-overlay:
 
 A simple component that I used before for adding loading indicator overlay when user is waiting for some asynchronous action to finish. <br>
 On this app it is used when fetching the properties data from the API.
 
-#### font-awesome:
+### font-awesome:
 
 Used for the icons in the app.

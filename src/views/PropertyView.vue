@@ -117,7 +117,8 @@
             </div>
             <hr>
             <h5 class="font-weight-bold">Description</h5>
-            <p class="">{{property.data.description.substring(0,1000)}}</p>
+            <!--TODO: if too long show portion and give some way to expand.-->
+            <p class="">{{property.data.description}}</p>
         </div>
 
     </div>

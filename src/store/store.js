@@ -8,7 +8,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         searchedProperties: [],
-        detailedProperties: []
+        detailedProperties: [],
+        currentIndex: 0
     },
     mutations: {
         addSearchedProperties(state, properties) {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
         },
         addDetailsOfProperty(state, details) {
             state.detailedProperties.push(details);
+        },
+        changeIndex(state, index){
+            state.currentIndex = index;
         }
     },
     actions: {

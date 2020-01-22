@@ -146,9 +146,6 @@
             },
             getRoomsString(){
                 return `properties.rooms:>${this.filters.rooms[0]}%20AND%20properties.rooms:<${this.filters.rooms[1]}`;
-            },
-            saveFilters(){
-
             }
         }
     }

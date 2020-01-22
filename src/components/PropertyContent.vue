@@ -82,7 +82,7 @@
         },
         methods: {
             goToDetails() {
-                console.log('otisao');
+                this.$emit('goToDetails');
                 this.$router.push({name: 'property', params: {id: this.id}})
             }
         }

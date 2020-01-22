@@ -19,7 +19,8 @@
                                   :street="current.data.location.street"
                                   :city="current.data.location.city"
                                   :type="current.data.property_type"
-                                  :surface="current.data.properties.surface">
+                                  :surface="current.data.properties.surface"
+                                  @goToDetails="goToDetails(current.data.id)">
                 </property-content>
 
             </Vue2InteractDraggable>
@@ -68,6 +69,7 @@
     import PropertyContent from './PropertyContent';
     import {mapState} from 'vuex';
     import {addPropertyToLocalStorage} from '../helpers/localStorage';
+    import axios from 'axios';
 
     export default {
         name: "PropertiesStack",
@@ -86,6 +88,7 @@
         },
         mounted() {
             this.properties = this.stateProperties;
+            this.index = this.stateIndex;
 
             //prevent error on initial load, wait a little so that data is all set before displaying first Card
             setTimeout(() => {
@@ -96,6 +99,7 @@
         computed: {
             ...mapState({
                 stateProperties: 'detailedProperties',
+                stateIndex: 'currentIndex'
             }),
             current() {
                 return this.properties[this.index]
@@ -107,11 +111,14 @@
         methods: {
             liked(propertyId) {
                 this.removeFirstCard();
-                console.log(`liked ${propertyId}`);
+                this.sendFeedback(propertyId, 'like');
             },
             disliked(propertyId) {
                 this.removeFirstCard();
-                console.log(`disliked ${propertyId}`);
+                this.sendFeedback(propertyId,'dislike');
+            },
+            goToDetails(propertyId){
+                this.sendFeedback(propertyId,'interested');
             },
             removeFirstCard() {
                 addPropertyToLocalStorage(this.current.data.id);
@@ -127,7 +134,17 @@
                     this.showCard = true;
                     this.isVisible = true;
                     this.index++;
+                    this.$store.commit('changeIndex',this.index);
                 }, 1000);
+            },
+            sendFeedback(id,value){
+                let feedback = {
+                    id: id,
+                    reaction: value
+                };
+                axios.post('logs.iapi.ch/myproject/feedback.json', feedback);
+                console.log('feedback sent');
+                console.log(feedback);
             }
         }
     }

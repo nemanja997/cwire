@@ -5,6 +5,8 @@
 The tinder UI looked as the best solution having in mind that it ensures feedback for every property that the user has seen.
 <br>
 
+Because of the specific layout of tinder like swipable card app is unfortunately only mobile friendly, couldn't make a layout for desktop.
+
 The idea was to have first card that is really swipable and to show 2 more cards in the background to illustrate "stack of cards".
 I used css transitions to bring seamlessly "bottom cards" to top when the first one is swiped.
 

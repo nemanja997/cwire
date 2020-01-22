@@ -1,8 +1,7 @@
 <template>
     <div style="height:700px; user-select: none;">
-        <div v-show="showCard" class="absolute" style="z-index: 3;margin-right:15px;">
+        <div v-if="isVisible" class="absolute" style="z-index: 3;margin-right:15px;">
             <Vue2InteractDraggable
-                    v-if="isVisible"
                     :interact-out-of-sight-x-coordinate="500"
                     :interact-max-rotation="20"
                     :interact-x-threshold="200"
@@ -78,15 +77,21 @@
         },
         data() {
             return {
-                isVisible: true,
+                isVisible: false,
                 onTop: false,
                 index: 0,
-                showCard: true,
+                showCard: false,
                 properties: []
             }
         },
         mounted() {
             this.properties = this.stateProperties;
+
+            //prevent error on initial load, wait a little so that data is all set before displaying first Card
+            setTimeout(() => {
+                this.isVisible = true;
+            }, 100);
+
         },
         computed: {
             ...mapState({
@@ -111,19 +116,18 @@
             removeFirstCard() {
                 addPropertyToLocalStorage(this.current.data.id);
                 this.onTop = true;
+
                 setTimeout(() => {
                     this.isVisible = false;
                     this.showCard = false;
                 }, 200);
+
                 setTimeout(() => {
                     this.onTop = false;
                     this.showCard = true;
-                }, 1000);
-                setTimeout(() => {
                     this.isVisible = true;
                     this.index++;
-                }, 1000)
-
+                }, 1000);
             }
         }
     }

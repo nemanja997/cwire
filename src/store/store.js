@@ -19,7 +19,7 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        addSearchedProperties(context) {
+        addRandomProperties(context) {
             let promiseArr = [];
             return axios.get('https://veza.iapi.ch/esearch/vezarent3/_search?size=100')
                 .then((response) => {

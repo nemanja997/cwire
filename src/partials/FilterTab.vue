@@ -26,13 +26,21 @@
                     </div>
                     <div class="col-6">
                         <label class="radio-container">House
-                            <input type="checkbox" id="house" value="HOUSE" v-model="propertyType">
+                            <input type="checkbox"
+                                   id="house"
+                                   value="HOUSE"
+                                   v-model="filters.type"
+                                   checked="checked">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="col-6">
                         <label class="radio-container">Apartment
-                            <input type="checkbox" id="apartment" value="APARTMENT" v-model="propertyType">
+                            <input type="checkbox"
+                                   id="apartment"
+                                   value="APARTMENT"
+                                   v-model="filters.type"
+                            checked="checked">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -43,10 +51,11 @@
                         Price:
                     </div>
                     <div class="col-12">
-                        <vue-slider v-model="price"
+                        <vue-slider v-model="filters.price"
                                     :min="0"
                                     :max="1000000"
-                                    :interval="1000">
+                                    :interval="1000"
+                                    :enable-cross="false">
                         </vue-slider>
                     </div>
                 </div>
@@ -56,10 +65,11 @@
                         Number of rooms:
                     </div>
                     <div class="col-12">
-                        <vue-slider v-model="rooms"
+                        <vue-slider v-model="filters.rooms"
                                     :min="1"
                                     :max="10"
-                                    :interval="0.5">
+                                    :interval="0.5"
+                                    :enable-cross="false">
                         </vue-slider>
                     </div>
                 </div>
@@ -79,6 +89,7 @@
 <script>
     import VueSlider from 'vue-slider-component';
     import 'vue-slider-component/theme/default.css';
+    import { getLastFilters, setLastFilters } from "../helpers/localStorage";
 
     export default {
         name: "Tab",
@@ -94,13 +105,19 @@
                 type: String
             }
         },
+        created(){
+            if(getLastFilters()){
+                this.filters = getLastFilters();
+            }
+        },
         data() {
             return {
                 currentlyExpanded: this.expanded,
-                type: ['HOUSE', 'APARTMENT'],
-                price: [0,1000000],
-                rooms:[0,10]
-
+                filters: {
+                    type: ['HOUSE', 'APARTMENT'],
+                    price: [0,1000000],
+                    rooms:[1,10]
+                }
             }
         },
         methods: {
@@ -108,6 +125,29 @@
                 this.currentlyExpanded = !this.currentlyExpanded;
             },
             filterProperties(){
+                let queryUrl = 'https://veza.iapi.ch/esearch/vezarent3/_search?q=';
+                queryUrl += `${this.getPriceString()}%20AND%20${this.getRoomsString()}`;
+                if(this.getTypeString() !== ''){
+                    queryUrl +=  `%20AND%20${this.getTypeString()}`;
+                }
+                setLastFilters(this.filters);
+                console.log(queryUrl);
+
+
+            },
+            getPriceString(){
+                return `gross_rent:>${this.filters.price[0]}%20AND%20gross_rent:<${this.filters.price[1]}`;
+            },
+            getTypeString(){
+                if(this.filters.type.length === 1){
+                    return `property_type:${this.filters.type[0]}`;
+                }
+                return '';
+            },
+            getRoomsString(){
+                return `properties.rooms:>${this.filters.rooms[0]}%20AND%20properties.rooms:<${this.filters.rooms[1]}`;
+            },
+            saveFilters(){
 
             }
         }

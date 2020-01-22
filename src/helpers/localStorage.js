@@ -38,7 +38,7 @@ export function isPropertyVisited(propertyId) {
 }
 
 export function getLastFilters() {
-    //returns lasFilters on null if its empty
+    //returns lasFilters or null if its empty
     return JSON.parse(localStorage.getItem('lastFilters'));
 }
 

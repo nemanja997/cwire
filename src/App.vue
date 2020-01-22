@@ -8,9 +8,7 @@
                  :width="200"
                  :is-full-page="true"></loading>
         <div  v-if="!isLoading">
-            <filter-tab title="Filters" :expanded="false">
 
-            </filter-tab>
             <router-view></router-view>
         </div>
     </div>
@@ -19,13 +17,12 @@
 
 <script>
     import Loading from 'vue-loading-overlay';
-    import FilterTab from './partials/FilterTab';
-
+    import Footer from './partials/Footer';
     export default {
         name: 'app',
         components: {
             Loading,
-            FilterTab
+            Footer
         },
         data() {
             return {
@@ -33,7 +30,7 @@
             }
         },
         mounted() {
-            this.$store.dispatch('addSearchedProperties').then(() => {
+            this.$store.dispatch('addRandomProperties').then(() => {
                 this.isLoading = false;
             });
         }

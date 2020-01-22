@@ -60,8 +60,10 @@ Used for the icons in the app.
 
 * Smoother transition when geting new top card.
 * Incorporate more filters
+* could incorporate search by location (eg. dropdown with list of cities in CH)
 * On detailed view shorten description if its too big and give some kind of expansion option to see long description. 
 * Handling images with diferent resolutions and aspect ratios.( dificult with current layout )
 * Checking if there is a info about property before displaying it (to not be empty)
 * Revrite some components to be more modular ( eg. PropertiesStack component)
 * Better naming of components and variables
+

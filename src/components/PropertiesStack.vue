@@ -142,7 +142,7 @@
                     id: id,
                     reaction: value
                 };
-                //mocked feedgack route
+                //mocked feedback route
                 // axios.post('logs.iapi.ch/myproject/feedback.json', feedback);
             }
         }

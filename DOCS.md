@@ -21,6 +21,8 @@ Every reaction is sent to the server.
 I decided that filters should be in the header and strongly colored as the next most important action in the app after cards interaction.<br>
 As the user search for filtered properties it is emydietly stored in **localStorage** so when the user visits that page again he will have already predefined filters from last search.
 
+Loader is shown whenever we are fetching data from the external API. (On initial load and on filtering properties)
+
 
 
 ## Choice of libraries

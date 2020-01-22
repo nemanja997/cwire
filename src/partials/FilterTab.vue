@@ -132,7 +132,6 @@
                     queryUrl +=  `%20AND%20${this.getTypeString()}`;
                 }
                 setLastFilters(this.filters);
-                console.log(queryUrl);
                 this.$store.dispatch('addFilteredProperties', queryUrl )
                     .then(() =>{
                         Event.$emit('goTFilteredProperties');

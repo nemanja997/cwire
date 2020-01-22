@@ -47,7 +47,7 @@ AS I decided to go with the Tinder like UI for the app I neaded something that w
 This wrapper component for Vue.js is built on top of **interact.js** library.<br>
 It has clear documentation and a lots of features and props so I decidetd that it will do the job on this app.
 
-####vue-loading-overlay:
+### vue-loading-overlay:
 
 A simple component that I used before for adding loading indicator overlay when user is waiting for some asynchronous action to finish. <br>
 On this app it is used when fetching the properties data from the API.
